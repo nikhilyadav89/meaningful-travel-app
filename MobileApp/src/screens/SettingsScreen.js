@@ -210,6 +210,13 @@ export default function SettingsScreen({ navigation }) {
           />
           
           <SettingItem
+            icon="🤖"
+            title="AI Assistant"
+            subtitle="Chat with AI powered by Perplexity"
+            onPress={() => navigation.navigate('AIChat')}
+          />
+          
+          <SettingItem
             icon="🔑"
             title="Change Password"
             subtitle="Update your password"

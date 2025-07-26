@@ -32,19 +32,19 @@ export default function HomeScreen({ navigation }) {
     },
     {
       id: 3,
+      title: 'AI Assistant',
+      subtitle: 'Chat with AI powered by Perplexity',
+      icon: '🤖',
+      screen: 'AIChat',
+      color: '#8b5cf6',
+    },
+    {
+      id: 4,
       title: 'Analytics',
       subtitle: 'View your app usage statistics',
       icon: '📊',
       screen: 'Home',
       color: '#f59e0b',
-    },
-    {
-      id: 4,
-      title: 'Messages',
-      subtitle: 'Check your messages and notifications',
-      icon: '💬',
-      screen: 'Home',
-      color: '#ef4444',
     },
   ];
 
