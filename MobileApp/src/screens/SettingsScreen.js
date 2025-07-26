@@ -212,7 +212,7 @@ export default function SettingsScreen({ navigation }) {
           <SettingItem
             icon="🤖"
             title="AI Assistant"
-            subtitle="Chat with AI powered by Perplexity"
+            subtitle="Chat with AI powered by Google Gemini"
             onPress={() => navigation.navigate('AIChat')}
           />
           

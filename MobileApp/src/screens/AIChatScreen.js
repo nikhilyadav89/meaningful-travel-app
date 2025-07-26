@@ -13,7 +13,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import PerplexityService from '../services/perplexityService';
+import GeminiService from '../services/geminiService';
 
 const { height } = Dimensions.get('window');
 
@@ -21,22 +21,22 @@ export default function AIChatScreen({ navigation }) {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hello! I'm your AI assistant powered by Perplexity. I can help you with questions, research, explanations, and more. What would you like to know?",
+      text: "Hello! I'm your AI assistant powered by Google Gemini. I can help you with questions, research, explanations, creative writing, and more. What would you like to know?",
       isUser: false,
       timestamp: new Date().toISOString(),
     }
   ]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedModel, setSelectedModel] = useState('llama-3.1-sonar-small-128k-online');
+  const [selectedModel, setSelectedModel] = useState('gemini-1.5-flash');
   const scrollViewRef = useRef();
 
   useEffect(() => {
     // Check if API key is configured
-    if (!PerplexityService.validateApiKey()) {
+    if (!GeminiService.validateApiKey()) {
       Alert.alert(
         'API Key Required',
-        'Please configure your Perplexity API key in the .env file to use AI chat features.',
+        'Please configure your Gemini API key in the .env file to use AI chat features.',
         [
           {
             text: 'OK',
@@ -67,7 +67,14 @@ export default function AIChatScreen({ navigation }) {
     }, 100);
 
     try {
-      const response = await PerplexityService.askQuestion(userMessage.text, selectedModel);
+      // Get conversation history for context (exclude the welcome message)
+      const conversationHistory = messages.filter(msg => msg.id !== 1);
+      
+      const response = await GeminiService.askQuestionWithHistory(
+        userMessage.text, 
+        conversationHistory, 
+        selectedModel
+      );
       
       const aiMessage = {
         id: Date.now() + 1,
@@ -109,7 +116,7 @@ export default function AIChatScreen({ navigation }) {
             setMessages([
               {
                 id: 1,
-                text: "Hello! I'm your AI assistant powered by Perplexity. I can help you with questions, research, explanations, and more. What would you like to know?",
+                text: "Hello! I'm your AI assistant powered by Google Gemini. I can help you with questions, research, explanations, creative writing, and more. What would you like to know?",
                 isUser: false,
                 timestamp: new Date().toISOString(),
               }
@@ -157,8 +164,10 @@ export default function AIChatScreen({ navigation }) {
           </Text>
           {message.model && (
             <Text style={styles.modelTag}>
-              {message.model.includes('small') ? 'Small' : 
-               message.model.includes('large') ? 'Large' : 'Huge'}
+              {message.model.includes('flash-8b') ? 'Flash 8B' : 
+               message.model.includes('flash') ? 'Flash' : 
+               message.model.includes('1.5-pro') ? '1.5 Pro' : 
+               message.model.includes('1.0-pro') ? '1.0 Pro' : 'Gemini'}
             </Text>
           )}
         </View>
@@ -167,9 +176,9 @@ export default function AIChatScreen({ navigation }) {
   );
 
   const suggestedQuestions = [
-    "What's the latest news in technology?",
     "Explain quantum computing in simple terms",
     "What are the best practices for mobile app development?",
+    "Write a creative short story about AI",
     "How does machine learning work?",
   ];
 
@@ -189,7 +198,7 @@ export default function AIChatScreen({ navigation }) {
           <View style={styles.headerContent}>
             <View style={styles.headerText}>
               <Text style={styles.headerTitle}>AI Assistant</Text>
-              <Text style={styles.headerSubtitle}>Powered by Perplexity</Text>
+              <Text style={styles.headerSubtitle}>Powered by Google Gemini</Text>
             </View>
             <TouchableOpacity style={styles.clearButton} onPress={clearChat}>
               <Text style={styles.clearButtonText}>Clear</Text>

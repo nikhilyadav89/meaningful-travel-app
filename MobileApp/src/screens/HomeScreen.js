@@ -33,7 +33,7 @@ export default function HomeScreen({ navigation }) {
     {
       id: 3,
       title: 'AI Assistant',
-      subtitle: 'Chat with AI powered by Perplexity',
+      subtitle: 'Chat with AI powered by Google Gemini',
       icon: '🤖',
       screen: 'AIChat',
       color: '#8b5cf6',

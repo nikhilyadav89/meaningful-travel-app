@@ -5,7 +5,7 @@ A beautiful and modern mobile app built with React Native and Expo, featuring a 
 ## ✨ Features
 
 - **Beautiful UI Design**: Modern, clean interface with thoughtful UX
-- **AI-Powered Chat**: Integrated Perplexity AI for intelligent conversations
+- **AI-Powered Chat**: Integrated Google Gemini AI for intelligent conversations
 - **Navigation**: Smooth navigation between multiple screens
 - **Profile Management**: User profile with editable information
 - **Settings**: Comprehensive settings with toggles and preferences
@@ -17,7 +17,7 @@ A beautiful and modern mobile app built with React Native and Expo, featuring a 
 - **React Native**: Cross-platform mobile framework
 - **Expo**: Development platform and tools
 - **React Navigation**: Navigation library
-- **Perplexity AI**: Advanced AI integration for chat functionality
+- **Google Gemini AI**: Advanced AI integration for chat functionality
 - **Axios**: HTTP client for API requests
 - **React Native Safe Area Context**: Safe area handling
 - **React Native Screens**: Native screen optimization
@@ -42,12 +42,12 @@ A beautiful and modern mobile app built with React Native and Expo, featuring a 
    npm install
    ```
 
-3. **Configure Perplexity API (Required for AI Chat):**
-   - Get your API key from [Perplexity AI](https://www.perplexity.ai/settings/api)
+3. **Configure Gemini API (Required for AI Chat):**
+   - Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
    - Open the `.env` file in the project root
-   - Replace `your_perplexity_api_key_here` with your actual API key
+   - Replace `your_gemini_api_key_here` with your actual API key
    ```
-   PERPLEXITY_API_KEY=your_actual_api_key_here
+   GEMINI_API_KEY=your_actual_api_key_here
    ```
 
 4. **Start the development server:**
@@ -91,7 +91,7 @@ MobileApp/
 │   │   ├── SettingsScreen.js  # App settings and preferences
 │   │   └── AIChatScreen.js    # AI-powered chat interface
 │   ├── services/
-│   │   └── perplexityService.js # Perplexity API integration
+│   │   └── geminiService.js # Google Gemini API integration
 │   └── components/            # Reusable components (future expansion)
 ├── assets/                    # Images, icons, and static assets
 ├── .env                       # Environment variables (API keys)
@@ -121,8 +121,9 @@ MobileApp/
 - Logout and account management options
 
 ### AI Chat Screen
-- Real-time chat interface with Perplexity AI
-- Support for different AI models (Small, Large, Huge)
+- Real-time chat interface with Google Gemini AI
+- Support for different AI models (Flash, Flash 8B, Pro)
+- Conversation context awareness
 - Suggested questions for quick start
 - Message history with timestamps
 - Error handling and loading states
@@ -161,7 +162,7 @@ The app uses a consistent color scheme and styling:
 - `@react-navigation/native-stack` - Stack navigator
 - `react-native-safe-area-context` - Safe area handling
 - `react-native-screens` - Native screen optimization
-- `axios` - HTTP client for API requests
+- `@google/generative-ai` - Official Google Gemini AI SDK
 - `react-native-dotenv` - Environment variable management
 
 ## 🚢 Building for Production
